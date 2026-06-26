@@ -1,0 +1,237 @@
+/* ── Reset & base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+#root { max-width: none; padding: 0; }
+
+/* ── Navbar ───────────────────────────────────────────── */
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: .75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.nav-brand {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #4f46e5;
+  text-decoration: none;
+  letter-spacing: -.01em;
+}
+.nav-links { display: flex; gap: .5rem; }
+.nav-link {
+  text-decoration: none;
+  color: #64748b;
+  font-weight: 600;
+  font-size: .9rem;
+  padding: .4rem .8rem;
+  border-radius: 6px;
+  transition: background .15s, color .15s;
+}
+.nav-link:hover  { background: #f1f5f9; color: #1e293b; }
+.nav-link.active { background: #ede9fe; color: #4f46e5; }
+
+/* ── Page layout ──────────────────────────────────────── */
+.page-content { max-width: 860px; margin: 0 auto; padding: 2rem 1rem; }
+.page-title   { font-size: 1.4rem; font-weight: 700; color: #0f172a; margin-bottom: 1.5rem; }
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity .15s, transform .1s;
+}
+.btn:hover  { opacity: .88; }
+.btn:active { transform: scale(.97); }
+.btn-primary   { background: #4f46e5; color: #fff; }
+.btn-secondary { background: #e2e8f0; color: #334155; }
+.btn-danger    { background: #ef4444; color: #fff; }
+.btn-sm        { padding: .3rem .7rem; font-size: .8rem; }
+
+/* ── Error banner ─────────────────────────────────────── */
+.error-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  border-radius: 8px;
+  padding: .75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: .9rem;
+}
+.error-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #991b1b;
+  line-height: 1;
+}
+
+/* ── Loading ──────────────────────────────────────────── */
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .75rem;
+  padding: 3rem;
+  color: #64748b;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.spinner {
+  width: 36px; height: 36px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #4f46e5;
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+/* ── Task form ────────────────────────────────────────── */
+.task-form-overlay {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+.task-form-overlay h2 { font-size: 1.1rem; margin-bottom: 1rem; color: #0f172a; }
+
+.form-group { display: flex; flex-direction: column; gap: .35rem; margin-bottom: 1rem; }
+.form-group label { font-size: .85rem; font-weight: 600; color: #475569; }
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: .5rem .75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: .95rem;
+  color: #1e293b;
+  background: #f8fafc;
+  transition: border-color .15s;
+  width: 100%;
+}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #4f46e5;
+  background: #fff;
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-actions { display: flex; gap: .75rem; justify-content: flex-end; margin-top: .5rem; }
+
+/* ── Task list ────────────────────────────────────────── */
+.task-list { display: flex; flex-direction: column; gap: .75rem; }
+.task-empty {
+  text-align: center;
+  padding: 3rem;
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+/* ── Task card (as clickable link on list) ────────────── */
+.task-card-link { text-decoration: none; display: block; }
+.task-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  transition: box-shadow .15s, border-color .15s;
+}
+.task-card-link:hover .task-card {
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  border-color: #c7d2fe;
+  cursor: pointer;
+}
+
+.task-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: .25rem;
+}
+.task-description {
+  font-size: .875rem;
+  color: #64748b;
+  margin-bottom: .5rem;
+  word-break: break-word;
+}
+.task-meta { display: flex; align-items: center; gap: .6rem; flex-wrap: wrap; }
+.task-due  { font-size: .78rem; color: #94a3b8; }
+
+/* ── Status badge ─────────────────────────────────────── */
+.status-badge {
+  display: inline-block;
+  padding: .2rem .65rem;
+  border-radius: 99px;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: capitalize;
+}
+.status-pending     { background: #fef3c7; color: #92400e; }
+.status-in_progress { background: #dbeafe; color: #1e40af; }
+.status-completed   { background: #dcfce7; color: #166534; }
+
+/* ── Detail page ──────────────────────────────────────── */
+.detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+.back-link {
+  color: #64748b;
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+}
+.back-link:hover { color: #1e293b; }
+
+.detail-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.detail-field { margin-bottom: 1rem; }
+.detail-label {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: .25rem;
+}
+.detail-value { font-size: 1rem; color: #1e293b; }
+.detail-title { font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem; }
+
+.detail-actions { display: flex; gap: .75rem; }
